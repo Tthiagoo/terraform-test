@@ -6,4 +6,10 @@ terraform {
     }
   }
 }
-provider "aws" {}
+provider "aws" {
+  region = "us-east-2"
+
+  assume_role {
+    role_arn = "arn:aws:iam::211125601738:role/TerraformCloudRole"
+  }
+}
