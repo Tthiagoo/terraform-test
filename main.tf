@@ -38,5 +38,11 @@ module "open-next_tf-aws-open-next-zone" {
 
   depends_on = [null_resource.baixar_build_open_next]
 
-
+  providers = {
+    aws                 = aws
+    aws.global          = aws
+    aws.iam             = aws
+    aws.dns             = aws
+    aws.server_function = aws
+  }
 }
