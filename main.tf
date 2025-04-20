@@ -30,8 +30,8 @@ resource "null_resource" "baixar_build_open_next" {
   }
 }
 
-module "open_next" {
-  source  = "RJPearson94/open-next/aws"
+module "open-next_tf-aws-open-next-zone" {
+  source      = "RJPearson94/open-next/aws//modules/tf-aws-open-next-zone"
   version = "2.2.0"
 
   folder_path = "${path.module}/build"
