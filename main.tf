@@ -1,9 +1,9 @@
 
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "thiago-bucket-iac-2"
+  bucket = "thiago-bucket-iac-3"
 
   tags = {
-    Name    = "Primeiroo bucket"
+    Name    = "Primeirooo bucket"
     Iac     = "true"
   }
 }
@@ -23,26 +23,26 @@ module "sqs" {
 
 
 
-# Faz o download do build do S3
-resource "null_resource" "baixar_build_open_next" {
-  provisioner "local-exec" {
-    command = "aws s3 sync s3://${var.build_bucket}/${var.build_path}./build"
-  }
-}
+# # Faz o download do build do S3
+# resource "null_resource" "baixar_build_open_next" {
+#   provisioner "local-exec" {
+#     command = "aws s3 sync s3://${var.build_bucket}/${var.build_path}./build"
+#   }
+# }
 
-module "open-next_tf-aws-open-next-zone" {
-  source      = "RJPearson94/open-next/aws//modules/tf-aws-open-next-zone"
-  version = "2.2.0"
+# module "open-next_tf-aws-open-next-zone" {
+#   source      = "RJPearson94/open-next/aws//modules/tf-aws-open-next-zone"
+#   version = "2.2.0"
 
-  folder_path = "${path.module}/build"
+#   folder_path = "${path.module}/build"
 
-  depends_on = [null_resource.baixar_build_open_next]
+#   depends_on = [null_resource.baixar_build_open_next]
 
-  providers = {
-    aws        = aws
-    aws.global = aws.global
-    aws.iam             = aws
-    aws.dns             = aws
-    aws.server_function = aws
-  }
-}
+#   providers = {
+#     aws        = aws
+#     aws.global = aws.global
+#     aws.iam             = aws
+#     aws.dns             = aws
+#     aws.server_function = aws
+#   }
+# }
